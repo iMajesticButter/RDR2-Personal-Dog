@@ -38,7 +38,7 @@ void CompanionCommands::commandPraise(RootState* state)
 void CompanionCommands::commandRetrieve(RootState* state)
 {
 	log("retrieving lost dog");
-	Vector3 spawnCoords = *getSafeCoordForPed(playerPos() + getForwardVector(player) * -10);
+	Vector3 spawnCoords = *getSafeCoordForPed(playerPos() + getForwardVector(player) * -35);
 	if (!spawnCoords)
 	{
 		log("could not find proper spawn coords");

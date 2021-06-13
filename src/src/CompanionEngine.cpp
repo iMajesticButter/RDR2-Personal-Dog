@@ -147,6 +147,15 @@ void CompanionEngine::update()
 		return;
 	}
 
+    // CUSTOM CHANGE
+    // make the dog fucking immortal so it stops dying for no fucking reason!
+    ENTITY::SET_ENTITY_MAX_HEALTH(state->companionDog, 10000000);
+    ENTITY::SET_ENTITY_HEALTH(state->companionDog, 10000000, 0);
+    PED::SET_PED_MOVE_RATE_OVERRIDE(state->companionDog, 2.0f);
+    if (PED::IS_PED_INJURED(state->companionDog)) {
+        PED::REVIVE_INJURED_PED(state->companionDog);
+    }
+
 	if (ENTITY::IS_ENTITY_DEAD(state->companionDog))
 	{
 		onCompnaionDied();
@@ -398,7 +407,7 @@ void CompanionEngine::updatePrompts()
 		}
 	}
 
-	if (!state->isWithinWhistlingRange && getPlayerSaddleHorse())
+	if (getPlayerSaddleHorse())
 	{
 		state->retrieveDogPrompt->setTargetEntity(getPlayerSaddleHorse());
 		state->retrieveDogPrompt->show();
@@ -572,8 +581,8 @@ void CompanionEngine::accompanyDog(Ped dog)
 	FLOCK::SET_ANIMAL_TUNING_FLOAT_PARAM(dog, 117, 1); // ATF_ThreatResponseNoiseMediumCaliberFleeOrCombatRange
 	FLOCK::SET_ANIMAL_TUNING_FLOAT_PARAM(dog, 119, 1); // ATF_ThreatResponseNoiseBigCaliberFleeOrCombatRange
 	FLOCK::SET_ANIMAL_TUNING_FLOAT_PARAM(dog, 165, 5);
-	ENTITY::SET_ENTITY_MAX_HEALTH(dog, DataFiles::Dog->getInt("max_health"));
-	ENTITY::SET_ENTITY_HEALTH(dog, ENTITY::GET_ENTITY_MAX_HEALTH(dog, 0), 0);
+	ENTITY::SET_ENTITY_MAX_HEALTH(dog, 10000000);
+	ENTITY::SET_ENTITY_HEALTH(dog, 10000000, 0);
 	DECORATOR::DECOR_SET_INT(state->companionDog, "SH_CMP_health_core", DataFiles::Dog->getInt("health_core"));
 
 	Blip dogBlip = createBlip(dog, 0x19365607);
