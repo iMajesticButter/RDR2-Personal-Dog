@@ -1,3 +1,6 @@
+This is NOT the original mod, I just made some minor adjustments to the original mod for my personal playthrough.
+Original by Shtivi
+
 # RDR2-Personal-Dog
 A cowboy without a horse is not a cowboy. But if you ever wondered how it'd be to play RDR2 with a personal dog, this mod is for you.
 
